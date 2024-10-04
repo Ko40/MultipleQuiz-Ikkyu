@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Ikkyu</title>
+    <style>
+        .correct-answer {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ikkyu Quiz</h1>
+
+    <form id="quizForm">
+        <!-- Frage 1 -->
+        <h3>Frage 1: Warum wurde Ikkyu ins Schloss des Fürsten eingeladen?</h3>
+        <label><input type="radio" name="q1" value="A"> A) Um dem Fürsten beim Kampf gegen Feinde zu helfen</label><br>
+        <label><input type="radio" name="q1" value="B"> B) Um eine Aufgabe zu lösen, die der Fürst vorbereitet hatte</label><br>
+        <label><input type="radio" name="q1" value="C"> C) Um den Fürsten über Religion zu belehren</label><br>
+        <label><input type="radio" name="q1" value="D"> D) Um das Schloss zu segnen</label><br>
+        <label><input type="radio" name="q1" value="E"> E) Um ein Fest im Schloss zu feiern</label><br>
+        <p id="q1-correct" class="correct-answer"></p>
+
+        <!-- Frage 2 -->
+        <h3>Frage 2: Was war das Problem des Fürsten mit dem Tiger auf dem Paravent?</h3>
+        <label><input type="radio" name="q2" value="A"> A) Der Tiger war zu klein gemalt.</label><br>
+        <label><input type="radio" name="q2" value="B"> B) Der Tiger konnte aus dem Paravent herausspringen.</label><br>
+        <label><input type="radio" name="q2" value="C"> C) Der Tiger sah so lebensecht aus, dass der Fürst Angst hatte, er würde aus dem Paravent springen.</label><br>
+        <label><input type="radio" name="q2" value="D"> D) Der Tiger zerstörte bereits Teile des Schlosses.</label><br>
+        <label><input type="radio" name="q2" value="E"> E) Der Fürst wollte den Tiger verkaufen.</label><br>
+        <p id="q2-correct" class="correct-answer"></p>
+
+        <!-- Frage 3 -->
+        <h3>Frage 3: Wie reagierte Ikkyu auf die Bitte des Fürsten, den Tiger zu fangen?</h3>
+        <label><input type="radio" name="q3" value="A"> A) Er weigerte sich und verließ das Schloss.</label><br>
+        <label><input type="radio" name="q3" value="B"> B) Er schlug vor, den Tiger mit einem Netz zu fangen.</label><br>
+        <label><input type="radio" name="q3" value="C"> C) Er bat den Fürsten, den Tiger aus dem Paravent springen zu lassen.</label><br>
+        <label><input type="radio" name="q3" value="D"> D) Er fragte nach Hilfe von anderen Mönchen.</label><br>
+        <label><input type="radio" name="q3" value="E"> E) Er sagte, der Tiger sei harmlos und machte nichts.</label><br>
+        <p id="q3-correct" class="correct-answer"></p>
+
+        <!-- Frage 4 -->
+        <h3>Frage 4: Was erkannte der Fürst am Ende der Geschichte?</h3>
+        <label><input type="radio" name="q4" value="A"> A) Dass der Tiger eine Gefahr für das Schloss war.</label><br>
+        <label><input type="radio" name="q4" value="B"> B) Dass der Tiger aus dem Paravent herausspringen kann.</label><br>
+        <label><input type="radio" name="q4" value="C"> C) Dass manche Probleme nur in unserem Kopf existieren.</label><br>
+        <label><input type="radio" name="q4" value="D"> D) Dass Ikkyu den Tiger unterschätzt hatte.</label><br>
+        <label><input type="radio" name="q4" value="E"> E) Dass Ikkyu den Tiger hätte fangen sollen.</label><br>
+        <p id="q4-correct" class="correct-answer"></p>
+
+        <!-- Frage 5 -->
+        <h3>Frage 5: Was war die Lehre, die der Fürst von Ikkyu erhielt?</h3>
+        <label><input type="radio" name="q5" value="A"> A) Manche Probleme können nur mit Gewalt gelöst werden.</label><br>
+        <label><input type="radio" name="q5" value="B"> B) Es gibt immer eine reale Gefahr in jedem Problem.</label><br>
+        <label><input type="radio" name="q5" value="C"> C) Manchmal muss man eine andere Perspektive einnehmen, um Probleme zu lösen.</label><br>
+        <label><input type="radio" name="q5" value="D"> D) Mönche sind klüger als Fürsten.</label><br>
+        <label><input type="radio" name="q5" value="E"> E) Man sollte niemals Bilder von Tigern im Schloss haben.</label><br>
+        <p id="q5-correct" class="correct-answer"></p>
+
+        <br>
+        <input type="button" value="Ergebnisse anzeigen" onclick="calculateScore()">
+    </form>
+
+    <h2 id="score"></h2>
+
+    <script>
+        function calculateScore() {
+            // Richtige Antworten
+            const correctAnswers = {
+                q1: 'B',
+                q2: 'C',
+                q3: 'C',
+                q4: 'C',
+                q5: 'C'
+            };
+
+            let score = 0;
+            const form = document.forms['quizForm'];
+
+            // Durch alle Fragen iterieren
+            for (let question in correctAnswers) {
+                const userAnswer = form[question].value;
+                const correctAnswer = correctAnswers[question];
+
+                // Richtig oder falsch überprüfen und Punkt hinzufügen
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+
+                // Richtige Antwort anzeigen
+                document.getElementById(`${question}-correct`).innerText = `Die richtige Antwort ist: ${correctAnswer}`;
+            }
+
+            // Score anzeigen
+            document.getElementById('score').innerText = `Dein Ergebnis: ${score}/5`;
+        }
+    </script>
+</body>
+</html>
